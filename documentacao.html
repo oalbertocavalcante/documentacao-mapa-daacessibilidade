@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação | Mapeamento com Acessibilidade para Atividade Comunitária</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.02); }
+        .doc-nav-item.active { 
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+        }
+        .mermaid { 
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-universal-access text-blue-600 text-2xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold text-blue-600">Mapa da Acessibilidade</h1>
+                    <p class="text-xs text-gray-500">Mobilidade sem Barreiras</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-blue-600 font-medium">Documentação Técnica</a>
+                <a href="https://github.com/unb-mds/mapadaacessibilidade" class="text-gray-700 hover:text-blue-600 transition">Repositório</a>
+            </nav>
+            <button class="md:hidden text-gray-700" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white py-2 px-4 shadow-lg" id="mobile-menu">
+            <a href="#" class="block py-2 text-blue-600 font-medium">Documentação</a>
+            <a href="https://github.com/unb-mds/mapadaacessibilidade" class="block py-2 text-gray-700 hover:text-blue-600">Repositório</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        <!-- Documentation Navigation -->
+        <aside class="w-full lg:w-1/4 bg-white p-4 rounded-lg shadow-md h-fit sticky top-24">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-blue-600 mb-2">Documentação</h2>
+                <p class="text-sm text-gray-600">Versão 1.0.0</p>
+            </div>
+            
+            <nav class="space-y-1">
+                <a href="#overview" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-home mr-2"></i> Visão Geral
+                </a>
+                <a href="#story-mapping" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-map mr-2"></i> Story Mapping
+                </a>
+                <a href="#user-stories" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-users mr-2"></i> User Stories
+                </a>
+                <a href="#use-cases" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-tasks mr-2"></i> Casos de Uso
+                </a>
+                <a href="#architecture" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-project-diagram mr-2"></i> Arquitetura
+                </a>
+                <a href="#setup" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-server mr-2"></i> Configuração
+                </a>
+                <a href="#contribution" class="doc-nav-item block px-4 py-2 rounded hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-hands-helping mr-2"></i> Como Contribuir
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Documentation Content -->
+        <div class="w-full lg:w-3/4">
+            <!-- Overview Section -->
+            <section id="overview" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-home text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Visão Geral do Projeto</h2>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Objetivo</h3>
+                    <p class="text-gray-700 mb-4">
+                        O Mapeamento com Acessibilidade para Atividade Comunitária é uma plataforma colaborativa que visa mapear e compartilhar informações sobre acessibilidade em locais públicos, facilitando a participação comunitária de pessoas com mobilidade reduzida.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-700 mb-2">Principais Benefícios:</h4>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li>Centralização de informações sobre acessibilidade</li>
+                            <li>Fomento à participação comunitária inclusiva</li>
+                            <li>Identificar locais para pessoas com deficiência</li>
+                            <li>Conscientização sobre acessibilidade urbana</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Público-Alvo</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-purple-700 mb-1">Pessoas com deficiência</h4>
+                            <p class="text-sm text-gray-700">Que necessitam de informações sobre acessibilidade</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-green-700 mb-1">Organizações comunitárias</h4>
+                            <p class="text-sm text-gray-700">Que promovem eventos inclusivos</p>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-yellow-700 mb-1">Gestores públicos</h4>
+                            <p class="text-sm text-gray-700">Interessados em melhorar a acessibilidade urbana</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Tecnologias Principais</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fab fa-react text-blue-500 mr-1"></i> React
+                        </span>
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-bolt text-yellow-500 mr-1"></i> Vite
+                        </span>
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fab fa-node-js text-green-500 mr-1"></i> Node.js
+                        </span>
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-server text-gray-500 mr-1"></i> Express
+                        </span>
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-database text-blue-400 mr-1"></i> PostgreSQL
+                        </span>
+                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm flex items-center">
+                            <i class="fas fa-database text-blue-600 mr-1"></i> PGAdmin
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Story Mapping Section -->
+            <section id="story-mapping" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-map text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Story Mapping</h2>
+                </div>
+
+                      <img 
+                        src="/images/heatmap.jpg" 
+                        alt="Mapa de calor de locais acessíveis"
+                      >                    
+                  
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Épicos Principais</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-medium text-gray-800">Autenticação e Perfis</h4>
+                            <p class="text-sm text-gray-600">Gerenciamento de contas de usuários e perfis</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-medium text-gray-800">Mapeamento de Locais</h4>
+                            <p class="text-sm text-gray-600">Cadastro e visualização de locais acessíveis</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-medium text-gray-800">Avaliações e Comentários</h4>
+                            <p class="text-sm text-gray-600">Feedback da comunidade sobre acessibilidade</p>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-medium text-gray-800">Eventos Comunitários</h4>
+                            <p class="text-sm text-gray-600">Organização de atividades inclusivas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Features por Épico</h3>
+                    <div class="space-y-6">
+                        <!-- Authentication Features -->
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                <h4 class="font-medium">Autenticação e Perfis</h4>
+                            </div>
+                            <div class="ml-4 space-y-2">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-blue-300 rounded-full mr-2"></div>
+                                    <span>Cadastro de usuário</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-blue-300 rounded-full mr-2"></div>
+                                    <span>Login e logout</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-blue-300 rounded-full mr-2"></div>
+                                    <span>Edição de perfil</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-blue-300 rounded-full mr-2"></div>
+                                    <span>Recuperação de senha</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Location Mapping Features -->
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                <h4 class="font-medium">Mapeamento de Locais</h4>
+                            </div>
+                            <div class="ml-4 space-y-2">
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
+                                    <span>Cadastro de novo local</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
+                                    <span>Visualização no mapa</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
+                                    <span>Filtros por tipo de acessibilidade</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
+                                    <span>Busca por localização</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Stories Section -->
+            <section id="user-stories" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">User Stories</h2>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Como um usuário com deficiência motora, eu quero...</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700">"Poder encontrar locais com rampas de acesso para que eu possa frequentar espaços públicos com autonomia."</p>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">Prioridade: Alta</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Status: Em andamento</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700">"Verificar se os banheiros são adaptados antes de sair de casa para evitar situações constrangedoras."</p>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">Prioridade: Alta</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Status: Em andamento</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Como um organizador comunitário, eu quero...</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700">"Identificar locais acessíveis para realizar eventos inclusivos que atendam a todos os participantes."</p>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">Prioridade: Média</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Status: Em andamento</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-gray-700">"Compartilhar informações sobre acessibilidade dos locais onde realizo eventos para ajudar outros organizadores."</p>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">Prioridade: Baixa</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded">Status: Pendente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Critérios de Aceitação</h3>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-gray-700 font-medium mb-2">Para a user story "Encontrar locais com rampas de acesso":</p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li>O sistema deve exibir um marcador especial para locais com rampas</li>
+                            <li>Deve ser possível filtrar locais por "possui rampa"</li>
+                            <li>As informações sobre rampas devem ser verificáveis por fotos</li>
+                            <li>O status de acessibilidade deve ser atualizável pela comunidade</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Use Cases Section -->
+            <section id="use-cases" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-tasks text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Casos de Uso</h2>
+                </div>
+
+                    <img 
+                        src="/images/casosdeuso.webp" 
+                        alt="Mapa de calor de locais acessíveis"
+                      >
+                
+                <div class="mb-6">
+                    <div class="flex space-x-2 mb-4 border-b">
+                        <button class="tab-button px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600" data-tab="add-location">Adicionar Local</button>
+                        <button class="tab-button px-4 py-2 font-medium text-gray-600" data-tab="search-location">Buscar Local</button>
+                        <button class="tab-button px-4 py-2 font-medium text-gray-600" data-tab="rate-location">Avaliar Local</button>
+                    </div>
+                    
+                    <div id="add-location" class="tab-content active">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Adicionar Novo Local</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">1. Pré-condições</h4>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>Usuário deve estar autenticado</li>
+                                    <li>Local não deve existir previamente no sistema</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">2. Fluxo Principal</h4>
+                                <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                    <li>Usuário acessa a opção "Adicionar Local"</li>
+                                    <li>Sistema exibe formulário com campos obrigatórios</li>
+                                    <li>Usuário preenche informações básicas (nome, endereço)</li>
+                                    <li>Usuário seleciona tipos de acessibilidade disponíveis</li>
+                                    <li>Usuário pode adicionar fotos comprovando acessibilidade</li>
+                                    <li>Usuário submete o formulário</li>
+                                    <li>Sistema valida e armazena as informações</li>
+                                    <li>Sistema confirma o cadastro com mensagem de sucesso</li>
+                                </ol>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">3. Fluxos Alternativos</h4>
+                                <p class="text-gray-700 mb-1"><strong>3.1 Local já existe:</strong></p>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>Sistema identifica local semelhante já cadastrado</li>
+                                    <li>Sugere ao usuário adicionar informações complementares ao registro existente</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="search-location" class="tab-content">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Buscar Local Acessível</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">1. Pré-condições</h4>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>Nenhuma - disponível para todos os usuários</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">2. Fluxo Principal</h4>
+                                <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                    <li>Usuário acessa a página de busca</li>
+                                    <li>Sistema exibe mapa com locais próximos</li>
+                                    <li>Usuário aplica filtros de acessibilidade conforme necessidade</li>
+                                    <li>Sistema atualiza mapa com resultados filtrados</li>
+                                    <li>Usuário seleciona local para ver detalhes</li>
+                                    <li>Sistema exibe informações completas e avaliações</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="rate-location" class="tab-content">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Avaliar Local</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">1. Pré-condições</h4>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>Usuário deve estar autenticado</li>
+                                    <li>Usuário deve ter visitado o local recentemente</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-700 mb-1">2. Fluxo Principal</h4>
+                                <ol class="list-decimal pl-5 space-y-1 text-gray-700">
+                                    <li>Usuário acessa página do local</li>
+                                    <li>Usuário clica em "Avaliar este local"</li>
+                                    <li>Sistema exibe formulário de avaliação</li>
+                                    <li>Usuário atribui nota (1-5 estrelas)</li>
+                                    <li>Usuário pode adicionar comentário e fotos</li>
+                                    <li>Usuário confirma avaliação</li>
+                                    <li>Sistema atualiza informações do local</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture Section -->
+            <section id="architecture" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-project-diagram text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Arquitetura Técnica</h2>
+                </div>
+
+                    <img 
+                        src="/images/arquitetura.webp" 
+                        alt="Diagrama de Arquitetura"
+                      >
+                
+                    <img 
+                        src="/images/modelagembanco.webp" 
+                        alt="Modelagem de Banco de Dados"
+                      >
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Diagrama de Arquitetura</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="mermaid">
+                            graph TD
+                                A[Frontend: React/Vite] -->|API Calls| B[Backend: Node.js/Express]
+                                B --> C[(Database: PostgreSQL)]
+                                C --> D[PGAdmin]
+                                A --> E[Leaflet & Open Street Map]
+                                A --> F[Authentication Service]
+                                B --> G[External APIs]
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-700 mb-2">Frontend</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fab fa-react text-blue-500 mr-2"></i> React
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-bolt text-yellow-500 mr-2"></i> Vite
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fab fa-js-square text-yellow-300 mr-2"></i> JavaScript
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marked-alt text-green-500 mr-2"></i> Leaflet/OSM
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-paint-brush text-purple-500 mr-2"></i> Tailwind CSS
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-paint-brush text-purple-500 mr-2"></i>HTML e CSS
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-green-700 mb-2">Backend</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fab fa-node-js text-green-500 mr-2"></i> Node.js
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-server text-gray-500 mr-2"></i> Express
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-key text-red-500 mr-2"></i> JWT Authentication
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-purple-700 mb-2">Banco de Dados</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fas fa-database text-blue-400 mr-2"></i> PostgreSQL
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-tools text-gray-600 mr-2"></i> PGAdmin
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-archive text-yellow-500 mr-2"></i> Migrations/Seeders
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-cloud text-blue-300 mr-2"></i> Servidor
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Fluxo de Dados</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <div class="mermaid">
+                            sequenceDiagram
+                                participant User
+                                participant Frontend
+                                participant Backend
+                                participant Database
+                                
+                                User->>Frontend: Acessa aplicação
+                                Frontend->>Backend: Requisição API
+                                Backend->>Database: Query SQL
+                                Database-->>Backend: Dados
+                                Backend-->>Frontend: Resposta JSON
+                                Frontend-->>User: Renderiza interface
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Setup Section -->
+            <section id="setup" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-server text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Configuração do Ambiente</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Pré-requisitos</h3>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Node.js 18.x ou superior</li>
+                            <li>PostgreSQL 14 ou superior</li>
+                            <li>PGAdmin 6 (opcional para gerenciamento visual)</li>
+                            <li>Git para controle de versão</li>
+                            <li>Yarn ou npm</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Passo a Passo</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-blue-700 mb-2">1. Clonar o repositório</h4>
+                            <pre><code>git clone https://github.com/unb-mds/mapadaacessibilidade.git
+cd mapadaacessibilidade</code></pre>
+                        </div>
+                        
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-green-700 mb-2">2. Configurar banco de dados</h4>
+                            <p class="text-gray-700 mb-2">Crie um banco PostgreSQL e configure as variáveis de ambiente:</p>
+                            <pre><code># .env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=acessibilidade_db
+DB_USER=postgres_user
+DB_PASS=postgres_password</code></pre>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-yellow-700 mb-2">3. Instalar dependências</h4>
+                            <pre><code># Instalar dependências do backend
+cd backend
+yarn install
+
+# Instalar dependências do frontend
+cd ../frontend
+npm install</code></pre>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-purple-700 mb-2">4. Executar migrações e seeders</h4>
+                            <pre><code># No diretório backend
+npm sequelize db:migrate
+npm sequelize db:seed:all</code></pre>
+                        </div>
+                        
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <h4 class="font-medium text-red-700 mb-2">5. Iniciar servidores</h4>
+                            <pre><code># Backend (em um terminal)
+npm dev
+
+# Frontend (em outro terminal)
+npm dev</code></pre>
+                            <p class="text-gray-700 mt-2">O frontend estará disponível em <code>http://localhost:3000</code> e o backend em <code>http://localhost:5000</code></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Variáveis de Ambiente</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-2 px-4 border-b">Variável</th>
+                                    <th class="py-2 px-4 border-b">Descrição</th>
+                                    <th class="py-2 px-4 border-b">Obrigatório</th>
+                                    <th class="py-2 px-4 border-b">Valor Padrão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">DB_HOST</td>
+                                    <td class="py-2 px-4 border-b">Host do banco de dados</td>
+                                    <td class="py-2 px-4 border-b text-center">Sim</td>
+                                    <td class="py-2 px-4 border-b">localhost</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">DB_PORT</td>
+                                    <td class="py-2 px-4 border-b">Porta do PostgreSQL</td>
+                                    <td class="py-2 px-4 border-b text-center">Não</td>
+                                    <td class="py-2 px-4 border-b">5432</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">JWT_SECRET</td>
+                                    <td class="py-2 px-4 border-b">Chave para tokens JWT</td>
+                                    <td class="py-2 px-4 border-b text-center">Sim</td>
+                                    <td class="py-2 px-4 border-b">-</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-4 border-b">MAPBOX_TOKEN</td>
+                                    <td class="py-2 px-4 border-b">Token da API Mapbox</td>
+                                    <td class="py-2 px-4 border-b text-center">Não</td>
+                                    <td class="py-2 px-4 border-b">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contribution Section -->
+            <section id="contribution" class="bg-white p-6 rounded-lg shadow-md mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-hands-helping text-blue-600 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-600">Como Contribuir</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Fluxo de Contribuição</h3>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+                            <li>Encontre uma issue ou crie uma nova descrevendo sua proposta</li>
+                            <li>Faça um fork do repositório</li>
+                            <li>Crie um branch descritivo (<code>git checkout -b feat/nova-funcionalidade</code>)</li>
+                            <li>Implemente suas alterações seguindo os padrões do projeto</li>
+                            <li>Escreva testes para suas alterações quando aplicável</li>
+                            <li>Atualize a documentação conforme necessário</li>
+                            <li>Envie um Pull Request (PR) para o branch <code>main</code></li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Padrões de Código</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li>ESLint e Prettier configurados - siga os padrões existentes</li>
+                                <li>Commits semânticos (feat:, fix:, docs:, etc.)</li>
+                                <li>Componentes React em PascalCase</li>
+                                <li>Pastas em kebab-case</li>
+                                <li>Estilos com Tailwind CSS quando possível</li>
+                                <li>Testes unitários para novas funcionalidades</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Modelo de Pull Request</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <pre><code>## Descrição
+[Descreva o propósito deste PR e as alterações realizadas]
+
+## Tipo de mudança
+- [ ] Correção de bug
+- [ ] Nova funcionalidade
+- [ ] Mudança que requer atualização de documentação
+- [ ] Outro (descreva)
+
+## Checklist
+- [ ] Meu código segue os padrões do projeto
+- [ ] Escrevi testes quando aplicável
+- [ ] Documentação atualizada
+- [ ] PR vinculado a uma issue</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Etiquetas (Labels)</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">bug</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">feature</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">documentation</span>
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">enhancement</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">help wanted</span>
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">good first issue</span>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">question</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Mapa da Acessibilidade</h3>
+                    <p class="text-gray-300 text-sm">
+                        Plataforma colaborativa para mapeamento de acessibilidade em locais públicos e comunitários.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://github.com/unb-mds/mapadaacessibilidade" class="text-gray-300 hover:text-white text-sm">Repositório GitHub</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Documentação da API</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Roadmap</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Código de Conduta</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contato</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <i class="fas fa-envelope mr-2"></i> contato@mapadaacessibilidade.com
+                        </li>
+                        <li class="flex items-center text-gray-300 text-sm">
+                            <i class="fab fa-github mr-2"></i> https://github.com/unb-mds/mapadaacessibilidade
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>Mapeamento com Acessibilidade para Atividade Comunitária © 2025. Todos os Direitos Resrvados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and tabs
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                    btn.classList.add('text-gray-600');
+                });
+                
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding tab
+                button.classList.remove('text-gray-600');
+                button.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+                
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true
+            }
+        });
+
+        // Add fade-in animation to sections as they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Highlight active navigation item
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.doc-nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
